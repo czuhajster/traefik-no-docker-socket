@@ -1,4 +1,4 @@
-# Traefik in Docker Compose with no access to docker socket
+# Traefik with no docker socket
 
 A simple example of a docker-compose setup for traefik without giving traefik access to the docker socket.
 
