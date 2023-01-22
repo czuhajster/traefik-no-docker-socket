@@ -1,0 +1,29 @@
+services:
+  traefik:
+    image: traefik:2.9.6
+    command:
+      - "--providers.file.directory=/configuration"
+      - "--providers.file.watch=true"
+      - "--entrypoints.web.address=:80"
+    volumes:
+      - "./traefik-dynamic.toml:/configuration/traefik-dynamic.toml:ro"
+    ports:
+      - "80:80"
+    networks:
+      - foo
+  whoami:
+    image: traefik/whoami
+    expose:
+      - 80
+    networks:
+      - foo
+      - bar
+  busybox:
+    image: busybox
+    command: ["sleep", "infinity"]
+    networks:
+      - bar
+
+networks:
+  foo:
+  bar:
